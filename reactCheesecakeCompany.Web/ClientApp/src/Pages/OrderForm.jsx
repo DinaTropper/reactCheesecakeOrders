@@ -86,8 +86,8 @@ const OrderForm = () => {
                             </div>
                             <div className="mb-3">
                                 {toppings.map(t => (
-                                    <div key={t.id} className='form-check'>
-                                        <input onClick={() => onChecked(t)} className='form-check-input' type='checkbox' />
+                                    <div key={t.id} className='form-check' onChange={() => onChecked(t)}>
+                                        <input className='form-check-input' type='checkbox' />
                                         <label className='form-check-label'>{t}</label>
                                     </div>
                                 ))}
@@ -130,4 +130,4 @@ const OrderForm = () => {
     )
 }
 
-export default OrderDetails;
+export default OrderForm;

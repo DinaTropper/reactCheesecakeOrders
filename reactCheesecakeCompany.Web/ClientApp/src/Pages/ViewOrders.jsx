@@ -35,7 +35,7 @@ const ViewOrders = () => {
                             {cheesecakeOrders.map(c => 
                                 <tr key={c.id} style={{ backgroundColor: "#f8f9fa", borderRadius: "15px" }} >
                                     <td>
-                                        <a href={`/orderdetails?${c.id}`}>{c.name}-{c.email}</a>
+                                        <a href={`/orderdetails/${c.id}`}>{c.name}-{c.email}</a>
                                     </td>
                                     <td>{c.base}</td>
                                     <td>{c.toppings}</td>
