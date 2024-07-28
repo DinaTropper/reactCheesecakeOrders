@@ -49,7 +49,7 @@ const OrderForm = () => {
     }
     const { name, email, base, specialRequests, total, deliveryDate, quantity } = cheesecakeOrder;
 
-    const totalPrice = (quantity * 49.99) + (toppings.length * 3.95 * quantity);
+    const totalPrice = (quantity * 49.99) + (cheesecakeOrder.toppings.length * 3.95 * quantity);
 
     const isValid = (name && email && base && deliveryDate && quantity);
 
