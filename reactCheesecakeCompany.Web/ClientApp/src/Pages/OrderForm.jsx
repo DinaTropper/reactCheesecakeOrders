@@ -33,13 +33,12 @@ const OrderForm = () => {
 
     const onChecked = (t) => {
         let toppingTypes = [];
-        if (cheesecakeOrder.toppings.includes(t)) {
-            toppingTypes = cheesecakeOrder.toppings.filter(toppings => toppings !== t);
-        } else {
+        cheesecakeOrder.toppings.includes(t) ?
+            toppingTypes = cheesecakeOrder.toppings.filter(toppings => toppings !== t) :
             toppingTypes = [...cheesecakeOrder.toppings, t];
-        }
         setCheesecakeOrder({ ...cheesecakeOrder, toppings: toppingTypes });
-        console.log(toppingTypes)
+        console.log(toppingTypes);
+        console.log(cheesecakeOrder);
     }
 
     const onTextChange = e => {
@@ -54,10 +53,12 @@ const OrderForm = () => {
 
     const isValid = (name && email && base && deliveryDate && quantity);
 
-    const onSubmitClick = async () => {
-        console.log(cheesecakeOrder);
-        await axios.post('/api/order/addorder', { name, email, base, specialRequests, total: totalPrice, toppings: toppings.join(','), quantity, deliveryDate });
+    const onSubmitClick = () => {
+        cheesecakeOrder.toppings = cheesecakeOrder.toppings.join(',');
+        cheesecakeOrder.total = totalPrice;
+         axios.post('/api/order/addorder', cheesecakeOrder);
         navigate('/Success');
+        console.log(cheesecakeOrder);
     }
     return (
 
@@ -86,7 +87,7 @@ const OrderForm = () => {
                             </div>
                             <div className="mb-3">
                                 {toppings.map(t => (
-                                    <div key={t.id} className='form-check' onChange={() => onChecked(t)}>
+                                    <div key={t.id} className='form-check' name="toppings" onChange={() => onChecked(t)}>
                                         <input className='form-check-input' type='checkbox' />
                                         <label className='form-check-label'>{t}</label>
                                     </div>
